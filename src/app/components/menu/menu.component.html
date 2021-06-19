@@ -1,0 +1,23 @@
+<p>menu works!</p>
+
+<div class="p-grid" style=" height: 100%;">
+    <div class="p-col-6" style="border: 1px solid black; width: 85px;">
+        <div id="room" class="p-col-12" style="height: 50px;">
+            <p-button (onClick)="controlMenu('room')">test</p-button>
+        </div>
+        <div class="p-col-12">
+            <p-button (onClick)="controlMenu('test')"></p-button>
+        </div>
+        <div class="p-col-12">
+            <p-button (onClick)="loadComponent()"></p-button>
+        </div>
+        <div class="p-col-12">
+            <p-button (onClick)="showRoom()"></p-button>
+        </div>
+    </div>
+    <div class="p-col-6" style="border: 1px solid black;" [style.display]="subMenuItem == undefined ? 'none' : 'initial'">
+        <div class="p-col-12">
+            <ng-template subMenu></ng-template>
+        </div>
+    </div>
+</div>

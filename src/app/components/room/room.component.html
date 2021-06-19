@@ -1,0 +1,19 @@
+<p>room works!</p>
+<h1>You're a nigger, Harry!</h1>
+<button pButton type="button" (click)="logMessages()"></button>
+
+<div *ngFor="let message of messages">
+    {{message.messageContent}}
+</div>
+
+<!--
+Governing message component and EventEmitters.
+-->
+<div style="font-family: Arial;">
+    <app-message (enterKeyup)="onMessageEnterKeyup($event)"
+                 (textInputChange)="onTextInputChange($event)"
+                 (uploadFiles)="onFileUpload($event)">
+    </app-message>
+</div>
+
+

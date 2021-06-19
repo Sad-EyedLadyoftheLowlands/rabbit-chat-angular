@@ -1,0 +1,12 @@
+<div>
+    <p-menubar [model]="messageMenuItems"></p-menubar>
+    <textarea rows="5"
+              cols="30"
+              pInputTextarea
+              style="width: 100%; resize: none;"
+              (ngModelChange)="onTextInputChange($event)"
+              (keyup.enter)="onEnterKeyup($event)"
+              [(ngModel)]="textInput">
+    </textarea>
+    <button pButton type="button" (click)="showText()"></button>
+</div>
