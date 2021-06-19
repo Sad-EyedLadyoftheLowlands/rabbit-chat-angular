@@ -1,18 +1,28 @@
-<h1>Room Component</h1>
-<button pButton type="button" (click)="logMessages()"></button>
+<div class="p-d-flex">
+    <div class="p-flex-column">
+        <div class="p-mb-2" style="overflow-y:auto; height: 400px;">
+            <h1>Room Component</h1>
+            <button pButton type="button" (click)="logMessages()"></button>
 
-<div *ngFor="let message of messages">
-    {{message.messageContent}}
+            <div *ngFor="let message of messages">
+                {{message.messageContent}}
+            </div>
+        </div>
+        <div class="p-mb-2" style="font-family: Arial;">
+            <!--
+            Governing message component and EventEmitters.
+            -->
+            <app-message (enterKeyup)="onMessageEnterKeyup($event)"
+                         (textInputChange)="onTextInputChange($event)"
+                         (uploadFiles)="onFileUpload($event)">
+            </app-message>
+        </div>
+    </div>
+
+
+
+
 </div>
 
-<!--
-Governing message component and EventEmitters.
--->
-<div style="font-family: Arial;">
-    <app-message (enterKeyup)="onMessageEnterKeyup($event)"
-                 (textInputChange)="onTextInputChange($event)"
-                 (uploadFiles)="onFileUpload($event)">
-    </app-message>
-</div>
 
 

@@ -1,5 +1,5 @@
 <div class="p-d-flex">
-    <div class="p-d-flex p-flex-column" style="border: 5px solid red;">
+    <div class="p-d-flex p-flex-column" style="border: 5px solid red; width: 85px;">
         <div class="p-mb-2" id="room">
             <p-button (onClick)="controlMenu('room')"></p-button>
         </div>
@@ -13,7 +13,7 @@
             <p-button (onClick)="showRoom()"></p-button>
         </div>
     </div>
-    <div [style.display]="subMenuItem == undefined ? 'none' : 'initial'">
+    <div style="border: 5px solid red; width: 85px;" [style.display]="subMenuItem == undefined ? 'none' : 'initial'">
         <div >
             <ng-template subMenu></ng-template>
         </div>
