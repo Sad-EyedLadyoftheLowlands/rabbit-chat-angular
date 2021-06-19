@@ -1,23 +1,9 @@
-<div style="float: left; ">
-    <app-menu></app-menu>
-</div>
-<!--Overflow: hidden prevents the component from moving left after menu.-->
-<div style="overflow: hidden; padding: 1em;">
-    <router-outlet></router-outlet>
-</div>
-
-
-<!--
-<div class="p-grid">
-    <div class="p-col-2">
+<div class="p-d-flex">
+    <div class="p-mr-2">
         <app-menu></app-menu>
     </div>
-    <div class="p-col-2">
-        <router-outlet name="secondMenu"></router-outlet>
-    </div>
-    <div class="p-col-8">
+    <!--Overflow: hidden prevents the component from moving left after menu.-->
+    <div class="p-mr-2"> <!--style="overflow: hidden;"-->
         <router-outlet></router-outlet>
     </div>
 </div>
-
--->
