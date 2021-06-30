@@ -10,6 +10,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 // RABBIT
 import { FileComponent } from '../components/room/file/file.component';
@@ -26,7 +27,8 @@ import { SubMenuDirective } from '../directives/sub-menu.directive';
         MenubarModule,
         TableModule,
         FileUploadModule,
-        DynamicDialogModule
+        DynamicDialogModule,
+        VirtualScrollerModule
     ],
     declarations: [
         FileComponent,
@@ -43,6 +45,9 @@ import { SubMenuDirective } from '../directives/sub-menu.directive';
         TableModule,
         FileUploadModule,
         DynamicDialogModule,
+        VirtualScrollerModule,
+
+        // RABBIT
         SubMenuDirective
     ],
     providers: [],

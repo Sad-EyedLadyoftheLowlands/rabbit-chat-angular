@@ -23,34 +23,19 @@ export class MenuComponent implements OnInit {
 
     ngOnInit(): void { } // this.loadComponent();
 
-    showRoom(): void { console.log('test'); }
-
     /*
-    Each button will send as a parameter the name of the route it should active in the second router outlet.
-    This way, all this method needs to do is route to the given string.
+    This method governs the creation of sub menu item components. Must implement a manner
+    for this method to know which button was clicked in order to load the correct component.
+    For now, they will simply all create TestComponent.
      */
-    public controlMenu(routeName: string): void {
-        console.log(routeName);
-        // this.router.navigateByUrl('/room').then();
-        this.router.navigate(['/' + routeName]).then();
-    }
-
     public loadComponent(): any {
-        if (this.subMenuItem !== undefined) {
-            this.subMenuItem = undefined;
-            return;
-        }
+        if (this.subMenuItem !== undefined) { return this.subMenuItem = undefined; }
 
-
-        console.log(this.subMenuHost);
-        // const subMenuItem = new SubMenuItem(TestComponent, { data: null });
         this.subMenuItem = new SubMenuItem(TestComponent, { data: null });
-        console.log(this.subMenuItem);
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.subMenuItem.component);
         const viewContainerRef = this.subMenuHost.viewContainerRef;
 
         viewContainerRef.clear();
         const componentRef = viewContainerRef.createComponent<TestComponent>(componentFactory);
-
     }
 }

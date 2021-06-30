@@ -10,7 +10,7 @@ export class MessageService {
     constructor() { }
 
     public createCreateMessageRequest(sendingUserId: number, roomId: number, content: string): CreateMessageRequest {
-        return {sendingUserId, roomId, content};
+        return { sendingUserId, roomId, content };
     }
 
 }
