@@ -16,7 +16,6 @@ export class RabbitMqService {
 
     private messageSource = new BehaviorSubject({});
     private binding: string = '/exchange/JmdExchange/renai.*';
-    // private mqUrl: string = 'ws://localhost:15674/ws';
 
     public currentMessage = this.messageSource.asObservable();
 
@@ -32,10 +31,9 @@ export class RabbitMqService {
 
     /*
     Primary method to connect to the RabbitMq server.
-    TODO: Public? Just call connect in the constructor?
      */
     private connect(): void {
-        console.log('Attempting to connect to RabbitMq');
+        console.log('Attempting to connect to RabbitMq with config: ' + JSON.stringify(this.rxStompConfig));
 
         this.rxStompService.configure(this.rxStompConfig);
 
@@ -51,7 +49,7 @@ export class RabbitMqService {
     }
 
     private dispatchMessage(message: any): void {
-        console.log('Dispatching message: ' + message.toString());
+        console.log('Dispatching message: ' + JSON.stringify(message));
 
         this.messageSource.next(message);
     }

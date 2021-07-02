@@ -2,10 +2,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 
+// RXJS
+import {Subscription} from 'rxjs';
+
 // RABBIT
 import { Message } from '../../models/message';
 import { MessageService } from '../../services/message.service';
 import { CreateMessageRequest } from '../../models/requests/create-message-request';
+import {RabbitMqService} from '../../services/rabbit-mq.service';
 
 @Component({
     selector: 'app-room',
@@ -14,15 +18,20 @@ import { CreateMessageRequest } from '../../models/requests/create-message-reque
 })
 export class RoomComponent implements OnInit {
 
-    public textInput: string = '';
+    private rabbitMqSubscription: Subscription | undefined;
     private userId: number = 1;
     private roomId: number = 4;
+    public textInput: string = '';
     public messages: Message[] = [];
 
     constructor(private httpService: HttpService,
-                private messageService: MessageService) { }
+                private messageService: MessageService,
+                private rabbitMqService: RabbitMqService) { }
 
-    ngOnInit(): void { this.populateMessages(); }
+    ngOnInit(): void {
+        this.populateMessages();
+        this.handleSubscriptions();
+    }
 
     /*
     Primary method for getting all messages.
@@ -32,6 +41,15 @@ export class RoomComponent implements OnInit {
         .subscribe((messages: Message[]) => this.messages = messages); }
 
     public logMessages(): void { console.log(this.messages); }
+
+    private handleSubscriptions(): void {
+        this.rabbitMqSubscription = this.rabbitMqService.currentMessage.subscribe((message: any) => {
+            if (message.Type === 0) {
+                console.log ('Mq message type 0 => calling populateMessages');
+                this.populateMessages();
+            }
+        });
+    }
 
     /*
     Event handler for file upload from File in Message.
