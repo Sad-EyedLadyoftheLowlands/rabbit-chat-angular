@@ -46,6 +46,7 @@ export class RoomComponent implements OnInit {
         this.rabbitMqSubscription = this.rabbitMqService.currentMessage.subscribe((message: any) => {
             if (message.Type === 0) {
                 console.log ('Mq message type 0 => calling populateMessages');
+
                 this.populateMessages();
             }
         });
@@ -59,10 +60,7 @@ export class RoomComponent implements OnInit {
     /*
     Event handler for text changing in Message.
      */
-    public onTextInputChange(text: string): void {
-        this.textInput = text;
-        console.log(this.textInput);
-    }
+    public onTextInputChange(text: string): void { this.textInput = text; }
 
     /*
     Event handler for sending messages from Message on Enter key.
@@ -70,9 +68,6 @@ export class RoomComponent implements OnInit {
     public onMessageEnterKeyup(keyupCode: number): void {
         const createMessageRequest: CreateMessageRequest =
             this.messageService.createCreateMessageRequest(this.userId, this.roomId, this.textInput);
-        this.httpService.postMessageToRoom(createMessageRequest).subscribe((res: boolean) => {
-            console.log(res);
-            this.populateMessages();
-        });
+        this.httpService.postMessageToRoom(createMessageRequest).subscribe((res: boolean) => this.populateMessages());
     }
 }

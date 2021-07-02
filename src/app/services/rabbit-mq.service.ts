@@ -67,7 +67,4 @@ export class RabbitMqService {
         }
         return stringArr.join('-');
     }
-
-
-
 }
