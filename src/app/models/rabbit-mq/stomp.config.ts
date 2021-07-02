@@ -4,7 +4,8 @@ export const AuditRxStompConfig: InjectableRxStompConfig = {
     /*
     Which server?
     */
-    brokerURL: 'ws://192.168.50.69:15674/ws',
+    // brokerURL: 'ws://192.168.50.69:15674/ws',
+    brokerURL: 'ws://localhost:15674/ws',
 
     /*
     Headers

@@ -50,7 +50,11 @@ export class RabbitMqService {
             .subscribe((message: Message) => { this.dispatchMessage(JSON.parse(message.body)); });
     }
 
-    private dispatchMessage(message: any): void { this.messageSource.next(message); }
+    private dispatchMessage(message: any): void {
+        console.log('Dispatching message: ' + message.toString());
+
+        this.messageSource.next(message);
+    }
 
     /*
     Copied from Audit Mobile.

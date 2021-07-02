@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 // PRIME NG
 import { DialogService } from 'primeng/dynamicdialog';
 
+// RABBIT MQ
+import { InjectableRxStompConfig, RxStompService } from '@stomp/ng2-stompjs';
+
 // RABBIT
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +18,8 @@ import { HttpService } from './services/http.service';
 import { MessageService } from './services/message.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { TestComponent } from './components/menu/test/test.component';
+import { RabbitMqService } from './services/rabbit-mq.service';
+import { AuditRxStompConfig } from './models/rabbit-mq/stomp.config';
 
 @NgModule({
     declarations: [
@@ -33,6 +38,9 @@ import { TestComponent } from './components/menu/test/test.component';
         // RABBIT
         HttpService,
         MessageService,
+        RabbitMqService,
+        { provide: InjectableRxStompConfig, useValue: AuditRxStompConfig },
+        { provide: RxStompService, deps: [ InjectableRxStompConfig ] },
 
         // PRIME NG
         DialogService
