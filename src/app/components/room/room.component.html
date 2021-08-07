@@ -22,6 +22,7 @@
             -->
 
             <div *ngFor="let message of messages">
+                <h3>User Id: {{message.rabbitUserId}}</h3>
                 {{message.messageContent}}
             </div>
         </div>

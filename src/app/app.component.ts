@@ -12,5 +12,10 @@ import { RabbitMqService } from './services/rabbit-mq.service';
 export class AppComponent {
     title = 'rabbit-chat-angular';
 
+    /*
+    We don't need to explicitly connect to RabbitMQ because this is handled in the
+    constructor of RabbitMqService. Simply instantiating the service is enough to
+    ensure that we are connected from the start of the app.
+     */
     constructor(private rabbitMqService: RabbitMqService) { }
 }

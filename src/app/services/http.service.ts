@@ -1,6 +1,6 @@
 // ANGULAR
 import { HttpClient } from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import { Config } from '../config/env.config';
 import {CreateMessageRequest} from '../models/requests/create-message-request';
