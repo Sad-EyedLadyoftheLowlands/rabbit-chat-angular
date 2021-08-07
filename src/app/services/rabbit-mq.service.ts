@@ -28,7 +28,7 @@ export class RabbitMqService {
     TODO: Consider making the username part of the queue name for ease of identification.
      */
     private finishConfiguration(): void {
-        this.mqQueueName = `rabbit-chat-client-${this.getUniqueId(2)}`;
+        this.mqQueueName = `rabbit-chat-client-${this.getUniqueIdentifier()}`;
         this.subscriptionHeaders = { id: 'angular', 'x-queue-name': this.mqQueueName };
         this.connect();
     }
@@ -58,17 +58,5 @@ export class RabbitMqService {
         this.messageSource.next(message);
     }
 
-    /*
-    Copied from Audit Mobile.
-    TODO: Check the book for the standard way to do this. There is a decent answer in the std lib.
-     */
-    private getUniqueId(parts: number): string {
-        const stringArr = [];
-        for (let i = 0; i < parts; i++) {
-            // tslint:disable-next-line:no-bitwise
-            const S4 = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-            stringArr.push(S4);
-        }
-        return stringArr.join('-');
-    }
+    private getUniqueIdentifier(): number { return Math.floor(Math.random() * 1000); }
 }
