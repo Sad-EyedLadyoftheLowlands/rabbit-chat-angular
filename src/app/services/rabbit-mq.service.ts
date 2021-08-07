@@ -15,7 +15,7 @@ export class RabbitMqService {
     private subscriptionHeaders: StompHeaders | undefined;
 
     private messageSource = new BehaviorSubject({});
-    private binding: string = '/exchange/JmdExchange/renai.*';
+    private binding: string = '/exchange/RabbitChat';
 
     public currentMessage = this.messageSource.asObservable();
 
@@ -23,6 +23,10 @@ export class RabbitMqService {
         this.finishConfiguration();
     }
 
+    /*
+    Queue name is dynamically generated.
+    TODO: Consider making the username part of the queue name for ease of identification.
+     */
     private finishConfiguration(): void {
         this.mqQueueName = `rabbit-chat-client-${this.getUniqueId(2)}`;
         this.subscriptionHeaders = { id: 'angular', 'x-queue-name': this.mqQueueName };
