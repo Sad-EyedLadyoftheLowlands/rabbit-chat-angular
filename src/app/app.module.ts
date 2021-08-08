@@ -16,16 +16,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpService } from './services/http.service';
 import { MessageService } from './services/message.service';
+import { DataService } from './services/data.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { TestComponent } from './components/menu/test/test.component';
 import { RabbitMqService } from './services/rabbit-mq.service';
 import { AuditRxStompConfig } from './models/rabbit-mq/stomp.config';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MenuComponent,
         TestComponent,
+        AuthComponent,
     ],
     imports: [
         BrowserModule,
@@ -39,6 +42,7 @@ import { AuditRxStompConfig } from './models/rabbit-mq/stomp.config';
         HttpService,
         MessageService,
         RabbitMqService,
+        DataService,
         { provide: InjectableRxStompConfig, useValue: AuditRxStompConfig },
         { provide: RxStompService, deps: [ InjectableRxStompConfig ] },
 
