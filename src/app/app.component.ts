@@ -10,8 +10,8 @@ import { RabbitMqService } from './services/rabbit-mq.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title: string = 'rabbit-chat-angular';
-    authenticated: boolean = false;
+    public title: string = 'rabbit-chat-angular';
+    public authenticated: boolean = false;
 
     /*
     We don't need to explicitly connect to RabbitMQ because this is handled in the

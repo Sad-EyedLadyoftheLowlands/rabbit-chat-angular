@@ -12,12 +12,17 @@ import {DataService} from '../../services/data.service';
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.css']
 })
+/*
+How much of this should be moved into an AuthService?
+ */
 export class AuthComponent implements OnInit {
     /*
     Hardcoded for testing purposes.
      */
     private username: string = 'firstuser';
     private password: string = 'demo';
+
+
 
     constructor(private httpService: HttpService,
                 private dataService: DataService) { }
@@ -39,5 +44,10 @@ export class AuthComponent implements OnInit {
             const authTest: boolean = this.dataService.getBoolean('AUTHENTICATED');
             console.log(authTest);
         });
+    }
+
+    public test(): void {
+        const test: boolean = this.dataService.getBoolean('AUTHENTICATED');
+        console.log(test);
     }
 }
