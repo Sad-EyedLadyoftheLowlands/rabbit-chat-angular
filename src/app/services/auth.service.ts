@@ -44,5 +44,4 @@ export class AuthService {
             // this.router.navigateByUrl('/room');
         });
     }
-
 }
