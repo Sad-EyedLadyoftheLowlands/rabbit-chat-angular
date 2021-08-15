@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
 // RABBIT CHAT
 import {HttpService} from '../../services/http.service';
 import {SimpleSignInRequest} from '../../models/requests/simple-sign-in-request';
-import {RabbitUser} from '../../models/rabbit-user';
 import {DataService} from '../../services/data.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'app-auth',
@@ -22,28 +22,16 @@ export class AuthComponent implements OnInit {
     private username: string = 'firstuser';
     private password: string = 'demo';
 
-
-
     constructor(private httpService: HttpService,
-                private dataService: DataService) { }
+                private dataService: DataService,
+                private authService: AuthService) { }
 
     ngOnInit(): void { }
 
     public handleSignInRequest(): void {
         const simpleSignInRequest: SimpleSignInRequest = { username: this.username, password: this.password };
 
-        this.httpService.postSimpleSignInRequest(simpleSignInRequest).subscribe((user: RabbitUser) => {
-            console.log(user);
-            this.dataService.setObject('AUTHUSER', user);
-
-            const test: RabbitUser = this.dataService.getObject('AUTHUSER');
-            console.log(test);
-
-            this.dataService.setBoolean('AUTHENTICATED', true);
-
-            const authTest: boolean = this.dataService.getBoolean('AUTHENTICATED');
-            console.log(authTest);
-        });
+        this.authService.signIn(simpleSignInRequest);
     }
 
     public test(): void {

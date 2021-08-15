@@ -22,6 +22,7 @@ import { TestComponent } from './components/menu/test/test.component';
 import { RabbitMqService } from './services/rabbit-mq.service';
 import { AuditRxStompConfig } from './models/rabbit-mq/stomp.config';
 import { AuthComponent } from './components/auth/auth.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { AuthComponent } from './components/auth/auth.component';
         MessageService,
         RabbitMqService,
         DataService,
+        AuthService,
         { provide: InjectableRxStompConfig, useValue: AuditRxStompConfig },
         { provide: RxStompService, deps: [ InjectableRxStompConfig ] },
 
