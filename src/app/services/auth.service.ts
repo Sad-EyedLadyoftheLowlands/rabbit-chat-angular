@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 
 // OTHER
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 // RABBIT CHAT
 import {RabbitUser} from '../models/rabbit-user';
@@ -41,7 +41,7 @@ export class AuthService {
 
             this.authenticated.next(true);
 
-            this.router.navigateByUrl('/room');
+            // this.router.navigateByUrl('/room');
         });
     }
 
