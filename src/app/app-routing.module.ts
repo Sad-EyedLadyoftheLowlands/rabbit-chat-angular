@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {TestComponent} from './components/menu/test/test.component';
 import {AuthComponent} from './components/auth/auth.component';
 
+// TODO: CRUCIAL - Missing auth guard for redirection
 const routes: Routes = [
     { path: '', component: AuthComponent },
     { path: 'room', loadChildren: () => import('./components/room/room.module').then((m) => m.RoomModule) },

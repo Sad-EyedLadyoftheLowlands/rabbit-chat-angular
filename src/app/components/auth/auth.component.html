@@ -1,2 +1,10 @@
 <p>auth works!</p>
 <button (click)="handleSignInRequest()">SIGN IN TEST</button>
+
+<form [formGroup]="loginForm" (ngSubmit)="handleSignInRequest()">
+    <h5>Username</h5>
+    <input id="username" type="text" formControlName="username">
+    <h5>Password</h5>
+    <input id="password" type="password" formControlName="password">
+    <button type="submit" [disabled]="!this.loginForm.valid">SUBMIT</button>
+</form>

@@ -26,6 +26,7 @@ export class AuthService {
         if (authenticated !== null) { this.authenticated.next(authenticated); }
     }
 
+    // TODO: No error handling, we seem to presume that the login is successful
     public signIn(simpleSignInRequest: SimpleSignInRequest): void {
         this.httpService.postSimpleSignInRequest(simpleSignInRequest).subscribe((user: RabbitUser) => {
             console.log(user);
@@ -41,7 +42,7 @@ export class AuthService {
 
             this.authenticated.next(true);
 
-            // this.router.navigateByUrl('/room');
+            this.router.navigateByUrl('/room');
         });
     }
 }
