@@ -10,6 +10,8 @@ import { Message } from '../../models/message';
 import { MessageService } from '../../services/message.service';
 import { CreateMessageRequest } from '../../models/requests/create-message-request';
 import { RabbitMqService } from '../../services/rabbit-mq.service';
+import { DataService } from '../../services/data.service';
+import { RabbitUser } from '../../models/rabbit-user';
 
 @Component({
     selector: 'app-room',
@@ -19,18 +21,20 @@ import { RabbitMqService } from '../../services/rabbit-mq.service';
 export class RoomComponent implements OnInit {
 
     private rabbitMqSubscription: Subscription | undefined;
-    private userId: number = 1;
+    private userId: number = -1;
     private roomId: number = 4;
     public textInput: string = '';
     public messages: Message[] = [];
 
     constructor(private httpService: HttpService,
                 private messageService: MessageService,
+                private dataService: DataService,
                 private rabbitMqService: RabbitMqService) { }
 
     ngOnInit(): void {
         this.populateMessages();
         this.handleSubscriptions();
+        this.populateUserData();
     }
 
     /*
@@ -50,6 +54,16 @@ export class RoomComponent implements OnInit {
                 this.populateMessages();
             }
         });
+    }
+
+    /*
+    Populate sending user ID from stored authenticated user.
+     */
+    private populateUserData(): void {
+        const authenticatedUser: RabbitUser = this.dataService.getObject('AUTHUSER');
+        console.log(authenticatedUser);
+
+        this.userId = authenticatedUser.rabbitUserId;
     }
 
     /*
