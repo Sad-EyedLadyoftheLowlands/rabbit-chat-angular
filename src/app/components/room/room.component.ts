@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 
 // RXJS
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 // RABBIT
 import { Message } from '../../models/message';
