@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs';
 import { Message } from '../../models/message';
 import { MessageService } from '../../services/message.service';
 import { CreateMessageRequest } from '../../models/requests/create-message-request';
-import {RabbitMqService} from '../../services/rabbit-mq.service';
+import { RabbitMqService } from '../../services/rabbit-mq.service';
 
 @Component({
     selector: 'app-room',

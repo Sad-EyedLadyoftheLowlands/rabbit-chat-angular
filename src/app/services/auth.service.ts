@@ -42,7 +42,7 @@ export class AuthService {
 
             this.authenticated.next(true);
 
-            this.router.navigateByUrl('/room');
+            // this.router.navigateByUrl('/room');
         });
     }
 }
