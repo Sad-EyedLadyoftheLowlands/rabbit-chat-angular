@@ -1,5 +1,5 @@
 // ANGULAR
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 
 // RXJS
@@ -90,6 +90,9 @@ export class RoomComponent implements OnInit, AfterViewChecked {
         this.httpService.postMessageToRoom(createMessageRequest).subscribe((res: boolean) => this.populateMessages());
     }
 
+    /*
+    TODO: Called far too frequently and prevents user from clicking around screen.
+     */
     private scrollToBottom(): void {
         if (this.messageContainer !== undefined) {
             this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
