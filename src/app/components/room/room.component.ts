@@ -1,5 +1,5 @@
 // ANGULAR
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { HttpService } from '../../services/http.service';
 
 // RXJS
@@ -18,7 +18,8 @@ import { RabbitUser } from '../../models/rabbit-user';
     templateUrl: './room.component.html',
     styleUrls: ['./room.component.css']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit, AfterViewChecked {
+    @ViewChild('messageContainer') private messageContainer: ElementRef | undefined;
 
     private rabbitMqSubscription: Subscription | undefined;
     private userId: number = -1;
@@ -37,12 +38,18 @@ export class RoomComponent implements OnInit {
         this.populateUserData();
     }
 
+    ngAfterViewChecked(): void { this.scrollToBottom(); }
+
     /*
     Primary method for getting all messages.
     TODO: Many filters to implement.
      */
     private populateMessages(): void { this.httpService.getAllMessagesFromRoom(this.roomId)
-        .subscribe((messages: Message[]) => this.messages = messages); }
+        .subscribe((messages: Message[]) => {
+            this.messages = messages;
+            this.scrollToBottom();
+        });
+    }
 
     private handleSubscriptions(): void {
         this.rabbitMqSubscription = this.rabbitMqService.currentMessage.subscribe((message: any) => {
@@ -81,5 +88,11 @@ export class RoomComponent implements OnInit {
         const createMessageRequest: CreateMessageRequest =
             this.messageService.createCreateMessageRequest(this.userId, this.roomId, this.textInput);
         this.httpService.postMessageToRoom(createMessageRequest).subscribe((res: boolean) => this.populateMessages());
+    }
+
+    private scrollToBottom(): void {
+        if (this.messageContainer !== undefined) {
+            this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+        }
     }
 }
