@@ -44,8 +44,6 @@ export class RoomComponent implements OnInit {
     private populateMessages(): void { this.httpService.getAllMessagesFromRoom(this.roomId)
         .subscribe((messages: Message[]) => this.messages = messages); }
 
-    public logMessages(): void { console.log(this.messages); }
-
     private handleSubscriptions(): void {
         this.rabbitMqSubscription = this.rabbitMqService.currentMessage.subscribe((message: any) => {
             if (message.Type === 0) {

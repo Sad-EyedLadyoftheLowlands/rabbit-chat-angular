@@ -1,6 +1,6 @@
 <div class="p-d-flex">
-    <div class="p-flex-column" >
-        <div class="p-mb-2" style="height: 79vh; overflow-y: auto;"> <!--style="overflow-y:auto; height: 400px;"-->
+    <div class="p-flex-column">
+        <div class="p-mb-2" style="height: 79vh; overflow-y: auto;">
             <div *ngFor="let message of messages" style="word-wrap: break-word">
                 <h3>User Id: {{message.rabbitUserId}}</h3>
                 {{message.messageContent}}
@@ -16,11 +16,4 @@
             </app-message>
         </div>
     </div>
-
-
-
-
 </div>
-
-
-
